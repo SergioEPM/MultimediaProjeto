@@ -2,7 +2,7 @@
 #include <sys/stat.h>
 #include "compress.h"
 #include "decompress.h"
-
+#include <time.h>
 
 FILE* OpenFile(char* filename) {
     FILE* fptr = fopen(filename, "rb");
@@ -86,11 +86,29 @@ void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir) {
 }
 
 void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir) {
-
     const char* p_dickens = "silesia/dickens";
-    Teste_compress(p_dickens, "dickens", comp_dir);
-    Teste_decompress(comp_dir, "dickens", rest_dir);
 
+    printf("--- Iniciando Processamento Especifico: [dickens] ---\n");
+
+    // --- TEMPO DA COMPRESSÃO ---
+    clock_t start_comp = clock();
+    Teste_compress(p_dickens, "dickens", comp_dir);
+    clock_t end_comp = clock();
+    double time_comp = (double)(end_comp - start_comp) / CLOCKS_PER_SEC;
+
+    // --- TEMPO DA DESCOMPRESSÃO ---
+    clock_t start_decomp = clock();
+    Teste_decompress(comp_dir, "dickens", rest_dir);
+    clock_t end_decomp = clock();
+    double time_decomp = (double)(end_decomp - start_decomp) / CLOCKS_PER_SEC;
+
+    // --- RELATÓRIO FINAL ---
+    printf("\n========================================\n");
+    printf("RELATORIO DE TEMPO [dickens]:\n");
+    printf("  Compressao:    %.3f segundos\n", time_comp);
+    printf("  Descompressao: %.3f segundos\n", time_decomp);
+    printf("  Tempo Total:   %.3f segundos\n", time_comp + time_decomp);
+    printf("========================================\n\n");
 }
 int main(void) {
     // Variable names for your folders

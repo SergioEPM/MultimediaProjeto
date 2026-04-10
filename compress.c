@@ -3,6 +3,8 @@
 
 
 
+
+
 void lz78_compress_logic(FILE* input, FILE* output) {
     printf("Executando LZ78 (16-bit) em ficheiro grande...\n");
 
@@ -20,7 +22,7 @@ void lz78_compress_logic(FILE* input, FILE* output) {
     int bytes_processados = 0;
     while ((c = fgetc(input)) != EOF) {
         int found_index = -1;
-        ///TEMP
+        ///Visual
         bytes_processados++;
         if (bytes_processados % 100000 == 0) { // A cada 100KB
             printf("Processando... %d KB\n", bytes_processados / 1024);

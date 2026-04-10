@@ -22,14 +22,19 @@ void lz78_decompress_logic(FILE* input, FILE* output) {
     unsigned short dict_count = 1;
 
     unsigned short idx;
-    int next_char;
+    long tokens_processados = 0;
 
-    // LÊ: 2 bytes do índice e depois 1 byte do char
+    // LÊ: 2 bytes do índice
     while (fread(&idx, sizeof(unsigned short), 1, input) == 1) {
-        next_char = fgetc(input);
+        int next_char = fgetc(input);
         if (next_char == EOF) break;
 
+        tokens_processados++;
 
+        // Mostra o progresso a cada 50.000 tokens (pares índice+char)
+        if (tokens_processados % 50000 == 0) {
+            printf("  > Descomprimindo: %ld tokens restaurados...\n", tokens_processados);
+        }
         // Vamos usar um buffer temporário para inverter a string
         char temp_stack[MAX_DICT_SIZE];
         int top = 0;
