@@ -86,9 +86,11 @@ void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir) {
 }
 
 void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir) {
+
     const char* p_dickens = "silesia/dickens";
     Teste_compress(p_dickens, "dickens", comp_dir);
     Teste_decompress(comp_dir, "dickens", rest_dir);
+
 }
 int main(void) {
     // Variable names for your folders
