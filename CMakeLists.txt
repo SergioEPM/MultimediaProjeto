@@ -5,4 +5,6 @@ set(CMAKE_C_STANDARD 17)
 
 add_executable(MultimediaProjeto main.c
         compress.c
-        compress.h)
+        compress.h
+        decompress.c
+        decompress.h)
