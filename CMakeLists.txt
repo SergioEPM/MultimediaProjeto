@@ -3,4 +3,6 @@ project(MultimediaProjeto C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(MultimediaProjeto main.c)
+add_executable(MultimediaProjeto main.c
+        compress.c
+        compress.h)
