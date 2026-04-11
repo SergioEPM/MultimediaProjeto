@@ -11,47 +11,35 @@
 
 ///TODO logica decompress for lz78
 void lz78_decompress_logic(FILE* input, FILE* output) {
-    // Para descomprimir, precisamos guardar as strings do dicionário
-    // Criamos um array de structs para reconstruir o caminho
     typedef struct {
-        unsigned short prefix;
+        unsigned int prefix;
         char c;
     } DecompEntry;
 
     DecompEntry* dict = malloc(sizeof(DecompEntry) * MAX_DICT_SIZE);
-    unsigned short dict_count = 1;
+    unsigned int dict_count = 1;
+    unsigned short idx; // Change back to short
 
-    unsigned short idx;
-    long tokens_processados = 0;
-
-    // LÊ: 2 bytes do índice
+    
     while (fread(&idx, sizeof(unsigned short), 1, input) == 1) {
         int next_char = fgetc(input);
         if (next_char == EOF) break;
 
-        tokens_processados++;
-
-        // Mostra o progresso a cada 50.000 tokens (pares índice+char)
-        if (tokens_processados % 50000 == 0) {
-            printf("  > Descomprimindo: %ld tokens restaurados...\n", tokens_processados);
-        }
-        // Vamos usar um buffer temporário para inverter a string
-        char temp_stack[MAX_DICT_SIZE];
+        // Reconstruct string using a stack
+        static char temp_stack[MAX_DICT_SIZE]; // Large buffer for long patterns
         int top = 0;
 
         temp_stack[top++] = (char)next_char;
-        unsigned short walk = idx;
+        unsigned int walk = idx;
         while (walk != 0) {
             temp_stack[top++] = dict[walk].c;
             walk = dict[walk].prefix;
         }
 
-        // Imprime do fim para o início (ordem correta)
         for (int i = top - 1; i >= 0; i--) {
             fputc(temp_stack[i], output);
         }
 
-        // Adiciona ao dicionário para as próximas consultas
         if (dict_count < MAX_DICT_SIZE) {
             dict[dict_count].prefix = idx;
             dict[dict_count].c = (char)next_char;
