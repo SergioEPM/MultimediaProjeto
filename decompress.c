@@ -3,11 +3,6 @@
 //
 
 #include "decompress.h"
-#include "compress.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 ///TODO logica decompress for lz78
 void lz78_decompress_logic(FILE* input, FILE* output) {

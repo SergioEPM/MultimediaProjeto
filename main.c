@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <sys/stat.h>
+#include <time.h>
 #include "compress.h"
 #include "decompress.h"
-#include <time.h>
 
 FILE* OpenFile(char* filename) {
     FILE* fptr = fopen(filename, "rb");

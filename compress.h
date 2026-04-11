@@ -2,6 +2,8 @@
 #define COMPRESS_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 #define MAX_DICT_SIZE 65535

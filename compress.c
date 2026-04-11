@@ -1,6 +1,4 @@
 #include "compress.h"
-#include <stdlib.h>
-#include <string.h>
 
 unsigned int hash_func(unsigned short prefix, char c) {
     return ((unsigned int)prefix << 8 | (unsigned char)c) % HASH_SIZE;
