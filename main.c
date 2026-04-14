@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <time.h>
 #include "compress.h"
@@ -95,6 +97,12 @@ void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir) 
     clock_t end_decomp = clock();
     double time_decomp = (double)(end_decomp - start_decomp) / CLOCKS_PER_SEC;
 
+    char *comp_file = malloc(sizeof(char) * 60);
+    snprintf(comp_file, 60, "%s/dickens.lz78", comp_dir);
+
+    int uncompressed_size = findSize(p_dickens);
+    int compressed_size = findSize(comp_file);
+
     // --- RELATÓRIO FINAL ---
     printf("\n========================================\n");
     printf("RELATORIO DE TEMPO [dickens]:\n");
@@ -102,6 +110,16 @@ void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir) 
     printf("  Descompressao: %.3f segundos\n", time_decomp);
     printf("  Tempo Total:   %.3f segundos\n", time_comp + time_decomp);
     printf("========================================\n\n");
+
+    printf("\n========================================\n");
+    printf("RELATORIO DE COMPRESSAO [dickens]:\n");
+    printf("  Antes:                  %d bytes\n", uncompressed_size);
+    printf("  Depois:                 %d bytes\n", compressed_size);
+    printf("  Racio de Compressao:    %.2f bytes\n", compressionRatio(p_dickens, comp_file));
+    printf("========================================\n\n");
+
+    // free(p_dickens);
+    free(comp_file);
 }
 
 
@@ -161,14 +179,14 @@ int main(void) {
     mkdir(rest_dir, 0777);
 
     //Compress e decompress só especifico!
-    //Compress_Decompress_Especifico(comp_dir, rest_dir);
+    Compress_Decompress_Especifico(comp_dir, rest_dir);
 
 
     //Compresss e decompress todos os ficheiros!
     //Compress_Decompress_ALL(comp_dir, rest_dir);
 
     //Teste Manual
-    Teste_String_Manual(comp_dir,rest_dir);
+    // Teste_String_Manual(comp_dir,rest_dir);
 
     return 0;
 }

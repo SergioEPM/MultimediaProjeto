@@ -32,8 +32,15 @@ long int findSize(char file_name[])
 
 float compressionRatio(char *uncompressed_path, char *compressed_path)
 {
-    FILE *uncomp = OpenFile(uncompressed_path);
-    FILE *comp = OpenFile(compressed_path);
+    // FILE *uncomp = OpenFile(uncompressed_path);
+    // FILE *comp = OpenFile(compressed_path);
 
-    // int uncomp_size = findSize();
+    int uncomp_size = findSize(uncompressed_path);
+    int comp_size = findSize(compressed_path);
+
+    float result = 0.0;
+
+    result = (float)uncomp_size / (float)comp_size;
+
+    return result;
 }
