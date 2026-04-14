@@ -104,6 +104,54 @@ void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir) 
     printf("========================================\n\n");
 }
 
+
+
+
+void Teste_String_Manual(const char* comp_dir, const char* rest_dir) {
+        char input_string[1024];
+        const char* temp_name = "manual_test";
+
+        printf("Digite a frase: ");
+
+        // 1. Capturar a String
+        if (fgets(input_string, sizeof(input_string), stdin) == NULL) return;
+        input_string[strcspn(input_string, "\n")] = 0; // Limpar o \n
+
+        // 2. Criar um ficheiro temporário com o que escreveu
+        FILE* f_temp = fopen("temp_input.txt", "w+b");
+        if (!f_temp) return;
+        fwrite(input_string, 1, strlen(input_string), f_temp);
+        rewind(f_temp); // Volta ao início para o compressor ler
+
+        // 3. Comprimir
+        printf("\n[PASSO 1] Comprimindo...\n");
+        compress_and_save_logic_debug(f_temp, comp_dir, temp_name);
+        fclose(f_temp);
+
+         char path_to_compressed[256];
+        snprintf(path_to_compressed, sizeof(path_to_compressed), "%s/%s.lz78", comp_dir, temp_name);
+
+         FILE* f_comp = fopen(path_to_compressed, "rb");
+    if (f_comp) {
+        printf("\n[PASSO 2] Descomprimindo com Visualizacao...\n");
+        // Usamos a mesma assinatura: (FILE* input, const char* folder, const char* name)
+        decompress_and_save_debug(f_comp, rest_dir, temp_name);
+        fclose(f_comp);
+    }
+        // 5. Mostrar o Resultado Final
+        char restored_path[256];
+        snprintf(restored_path, sizeof(restored_path), "%s/%s", rest_dir, temp_name);
+
+        FILE* f_res = fopen(restored_path, "r");
+        if (f_res) {
+            char output_result[1024];
+            fgets(output_result, sizeof(output_result), f_res);
+            printf("\nRESULTADO FINAL RESTAURADO:\n\"%s\"\n", output_result);
+            fclose(f_res);
+        }
+        printf("========================================\n\n");
+    }
+
 int main(void) {
     // Variable names for your folders
     const char* comp_dir = "silesia_compress";
@@ -113,11 +161,14 @@ int main(void) {
     mkdir(rest_dir, 0777);
 
     //Compress e decompress só especifico!
-    Compress_Decompress_Especifico(comp_dir, rest_dir);
+    //Compress_Decompress_Especifico(comp_dir, rest_dir);
 
 
     //Compresss e decompress todos os ficheiros!
     //Compress_Decompress_ALL(comp_dir, rest_dir);
+
+    //Teste Manual
+    Teste_String_Manual(comp_dir,rest_dir);
 
     return 0;
 }

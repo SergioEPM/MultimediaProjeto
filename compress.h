@@ -17,4 +17,8 @@ typedef struct {
 
 
 void compress_and_save_logic(FILE* input, const char* folder, const char* filename);
+
+void compress_and_save_logic_debug(FILE* input, const char* folder, const char* filename);
+
+
 #endif
