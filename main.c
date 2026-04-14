@@ -3,14 +3,7 @@
 #include <time.h>
 #include "compress.h"
 #include "decompress.h"
-
-FILE* OpenFile(char* filename) {
-    FILE* fptr = fopen(filename, "rb");
-    if (fptr == NULL) {
-        fprintf(stderr, "Error: Could not open file %s\n", filename);
-    }
-    return fptr;
-}
+#include "funcoes.h"
 
 void Teste_compress(const char* in_path, const char* name, const char* folder) {
     FILE* f_in = OpenFile((char*)in_path);
@@ -110,6 +103,7 @@ void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir) 
     printf("  Tempo Total:   %.3f segundos\n", time_comp + time_decomp);
     printf("========================================\n\n");
 }
+
 int main(void) {
     // Variable names for your folders
     const char* comp_dir = "silesia_compress";

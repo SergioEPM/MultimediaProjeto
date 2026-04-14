@@ -7,4 +7,6 @@ add_executable(MultimediaProjeto main.c
         compress.c
         compress.h
         decompress.c
-        decompress.h)
+        decompress.h
+        funcoes.c
+        funcoes.h)
