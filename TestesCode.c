@@ -8,6 +8,8 @@
 #include "compress.h"
 #include "decompress.h"
 
+
+
 FILE* OpenFile(char* filename) {
     FILE* fptr = fopen(filename, "rb");
     if (fptr == NULL) {

@@ -10,6 +10,12 @@
 #include <string.h>
 #include "compress.h"
 
+/**
+ * @file decompress.h
+ * @brief Header file containing LZ78 decompression structures and prototypes.
+ */
+
+
 
 /**
  * @brief Core LZ78 decompression algorithm using an array-based dictionary.

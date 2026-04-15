@@ -7,6 +7,12 @@
 #include <stdio.h>
 
 /**
+ * @file TestesCode.h
+ * @brief Header file containing testes and calling the right functions.
+ */
+
+
+/**
  * @brief Helper function to safely open files.
  * Provides a centralized way to open files in binary read mode with
  * built-in error reporting to stderr.

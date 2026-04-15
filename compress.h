@@ -6,6 +6,12 @@
 #include <string.h>
 
 /**
+ * @file compress.h
+ * @brief Header file containing LZ78 compression structures and prototypes.
+ */
+
+
+/**
  * @def MAX_DICT_SIZE
  * @brief The maximum number of entries allowed in the LZ78 dictionary.
  * Limited to 65535 to fit within an unsigned short (2 bytes).
