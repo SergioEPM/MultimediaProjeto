@@ -25,3 +25,7 @@ desktop.ini
 silesia_compress/
 silesia_restored/
 temp_input.txt
+
+# Documentação Doxygen
+
+docs/

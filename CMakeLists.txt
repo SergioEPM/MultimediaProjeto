@@ -9,4 +9,6 @@ add_executable(MultimediaProjeto main.c
         decompress.c
         decompress.h
         funcoes.c
-        funcoes.h)
+        funcoes.h
+        TestesCode.c
+        TestesCode.h)

@@ -4,6 +4,7 @@ unsigned int hash_func(unsigned short prefix, char c) {
     return ((unsigned int)prefix << 8 | (unsigned char)c) % HASH_SIZE;
 }
 
+
 void lz78_compress_logic(FILE* input, FILE* output) {
     // calloc is important: it sets everything to 0
     HashEntry* hash_table = calloc(HASH_SIZE, sizeof(HashEntry));
