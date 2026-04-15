@@ -8,7 +8,7 @@ FILE* OpenFile(char* filename) {
     return fptr;
 }
 
-long int findSize(char file_name[])
+long int findSize(const char file_name[])
 {
     // opening the file in read mode
     FILE* fp = fopen(file_name, "r");
@@ -30,7 +30,7 @@ long int findSize(char file_name[])
     return res;
 }
 
-float compressionRatio(char *uncompressed_path, char *compressed_path)
+float compressionRatio(const char *uncompressed_path, const char *compressed_path)
 {
     // FILE *uncomp = OpenFile(uncompressed_path);
     // FILE *comp = OpenFile(compressed_path);

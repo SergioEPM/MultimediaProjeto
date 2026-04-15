@@ -4,22 +4,21 @@
 
 #ifndef MULTIMEDIAPROJETO_TESTESCODE_H
 #define MULTIMEDIAPROJETO_TESTESCODE_H
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <time.h>
+#include "compress.h"
+#include "funcoes.h"
+#include "decompress.h"
 
 /**
  * @file TestesCode.h
  * @brief Header file containing testes and calling the right functions.
  */
 
-
-/**
- * @brief Helper function to safely open files.
- * Provides a centralized way to open files in binary read mode with
- * built-in error reporting to stderr.
- * * @param filename The path/name of the file to open.
- * @return FILE* A pointer to the opened file, or NULL if it failed.
- */
-FILE* OpenFile(char* filename);
 
 /**
  * @brief Unit test wrapper for the compression stage.

@@ -3,20 +3,9 @@
 //
 
 #include "TestesCode.h"
-#include <sys/stat.h>
-#include <time.h>
-#include "compress.h"
-#include "decompress.h"
 
 
 
-FILE* OpenFile(char* filename) {
-    FILE* fptr = fopen(filename, "rb");
-    if (fptr == NULL) {
-        fprintf(stderr, "Error: Could not open file %s\n", filename);
-    }
-    return fptr;
-}
 
 void Teste_compress(const char* in_path, const char* name, const char* folder) {
     FILE* f_in = OpenFile((char*)in_path);
