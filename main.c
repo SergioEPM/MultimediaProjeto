@@ -2,6 +2,25 @@
 #include <sys/stat.h>
 #include "TestesCode.h"
 
+/**
+ * @mainpage LZ78 Compression Project
+ *
+ * ## Overview
+ * This project implements the LZ78 algorithm for multimedia data compression.
+ * It features a high-performance Hash Table implementation to ensure O(1)
+ * average-time complexity during dictionary lookups.
+ *
+ * ## Key Modules
+ * - **Compression:** Handles dictionary building and token generation.
+ * - **Decompression:** Reconstructs original data using a stack-based walk.
+ * - **Test Suite:** Includes automated testing for the Silesia Corpus.
+ *
+ * ## How to Navigate
+ * Use the tabs above to explore the **Classes** (structs like HashEntry)
+ * or **Files** to see the documented functions.
+ */
+
+
 /// Main function that allows to change the type of run
 /// 1-All files
 /// 2-Especific file
