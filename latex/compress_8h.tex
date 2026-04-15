@@ -1,0 +1,187 @@
+\doxysection{compress.\+h File Reference}
+\hypertarget{compress_8h}{}\label{compress_8h}\index{compress.h@{compress.h}}
+
+
+Header file containing LZ78 compression structures and prototypes.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for compress.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{compress_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{compress_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structHashEntry}{Hash\+Entry}}
+\begin{DoxyCompactList}\small\item\em Represents a single node in the compression dictionary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{compress_8h_ae4c63cd934fd279e3433c21ee17fc9a0}\label{compress_8h_ae4c63cd934fd279e3433c21ee17fc9a0} 
+\#define {\bfseries MAX\+\_\+\+DICT\+\_\+\+SIZE}~65535
+\begin{DoxyCompactList}\small\item\em The maximum number of entries allowed in the LZ78 dictionary. Limited to 65535 to fit within an unsigned short (2 bytes). \end{DoxyCompactList}\item 
+\Hypertarget{compress_8h_ad6074dd11ab3c97c8135c43aab03ae95}\label{compress_8h_ad6074dd11ab3c97c8135c43aab03ae95} 
+\#define {\bfseries HASH\+\_\+\+SIZE}~131071
+\begin{DoxyCompactList}\small\item\em The size of the Hash Table array. Uses a prime number (131071) significantly larger than the dictionary size to minimize hash collisions and maintain O(1) average lookup time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{compress_8h_a0c32dfe6dee6d6c82e79fa6c645994ff}{hash\+\_\+func}} (unsigned short prefix, char c)
+\begin{DoxyCompactList}\small\item\em Simple hash function for the dictionary lookup. Combines the current prefix index and the next character to generate a hash key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{compress_8h_a19efdb6128f5d9e7f7fad6138d5cde91}{lz78\+\_\+compress\+\_\+logic}} (FILE \texorpdfstring{$\ast$}{*}input, FILE \texorpdfstring{$\ast$}{*}output)
+\begin{DoxyCompactList}\small\item\em Core LZ78 compression algorithm using a Hash Table. Reads characters one by one, searches for the longest existing prefix in the dictionary, and writes (prefix\+\_\+index, next\+\_\+char) pairs to the output file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{compress_8h_a3b3348d6adda43902b25d593641f5db4}{compress\+\_\+and\+\_\+save\+\_\+logic}} (FILE \texorpdfstring{$\ast$}{*}input, const char \texorpdfstring{$\ast$}{*}folder, const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Handles file I/O boilerplate for standard compression. Generates the target file path, opens the binary output stream, and triggers the compression logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{compress_8h_a813ec5ac5afc28f1d9bc598e37d266b6}{print\+\_\+final\+\_\+dictionary}} (\mbox{\hyperlink{structHashEntry}{Hash\+Entry}} \texorpdfstring{$\ast$}{*}hash\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Debug helper to visualize the state of the Hash Table. Iterates through the hash table and prints the first 50 entries, showing how sequences are mapped to dictionary indices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{compress_8h_a92981654ac5bf8670b4c39073461e891}{lz78\+\_\+visual\+\_\+debug}} (FILE \texorpdfstring{$\ast$}{*}input, FILE \texorpdfstring{$\ast$}{*}output)
+\begin{DoxyCompactList}\small\item\em An instrumented version of the LZ78 algorithm for educational purposes. Performs compression while printing a step-\/by-\/step trace of dictionary hits (EXISTE) and misses (NOVO) to the console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{compress_8h_a498094515bba1301a1ba87e2400c6ed8}{compress\+\_\+and\+\_\+save\+\_\+logic\+\_\+debug}} (FILE \texorpdfstring{$\ast$}{*}input, const char \texorpdfstring{$\ast$}{*}folder, const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Wrapper for the visual debug mode. Same as the standard logic, but redirects the compression task to lz78\+\_\+visual\+\_\+debug for real-\/time console tracking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing LZ78 compression structures and prototypes. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{compress_8h_a3b3348d6adda43902b25d593641f5db4}\label{compress_8h_a3b3348d6adda43902b25d593641f5db4} 
+\index{compress.h@{compress.h}!compress\_and\_save\_logic@{compress\_and\_save\_logic}}
+\index{compress\_and\_save\_logic@{compress\_and\_save\_logic}!compress.h@{compress.h}}
+\doxysubsubsection{\texorpdfstring{compress\_and\_save\_logic()}{compress\_and\_save\_logic()}}
+{\footnotesize\ttfamily void compress\+\_\+and\+\_\+save\+\_\+logic (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{input,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{folder,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Handles file I/O boilerplate for standard compression. Generates the target file path, opens the binary output stream, and triggers the compression logic. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em input} & Pointer to the source file. \\
+\hline
+{\em folder} & The destination directory string. \\
+\hline
+{\em filename} & The original name of the file (to be appended with .lz78). \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{compress_8h_a498094515bba1301a1ba87e2400c6ed8}\label{compress_8h_a498094515bba1301a1ba87e2400c6ed8} 
+\index{compress.h@{compress.h}!compress\_and\_save\_logic\_debug@{compress\_and\_save\_logic\_debug}}
+\index{compress\_and\_save\_logic\_debug@{compress\_and\_save\_logic\_debug}!compress.h@{compress.h}}
+\doxysubsubsection{\texorpdfstring{compress\_and\_save\_logic\_debug()}{compress\_and\_save\_logic\_debug()}}
+{\footnotesize\ttfamily void compress\+\_\+and\+\_\+save\+\_\+logic\+\_\+debug (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{input,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{folder,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Wrapper for the visual debug mode. Same as the standard logic, but redirects the compression task to lz78\+\_\+visual\+\_\+debug for real-\/time console tracking. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em input} & Pointer to the source file. \\
+\hline
+{\em folder} & The destination directory string. \\
+\hline
+{\em filename} & The original name of the file. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{compress_8h_a0c32dfe6dee6d6c82e79fa6c645994ff}\label{compress_8h_a0c32dfe6dee6d6c82e79fa6c645994ff} 
+\index{compress.h@{compress.h}!hash\_func@{hash\_func}}
+\index{hash\_func@{hash\_func}!compress.h@{compress.h}}
+\doxysubsubsection{\texorpdfstring{hash\_func()}{hash\_func()}}
+{\footnotesize\ttfamily unsigned int hash\+\_\+func (\begin{DoxyParamCaption}\item[{unsigned short}]{prefix,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+Simple hash function for the dictionary lookup. Combines the current prefix index and the next character to generate a hash key. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em prefix} & The index of the already existing sequence in the dictionary. \\
+\hline
+{\em c} & The next character in the input stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int The calculated hash index within HASH\+\_\+\+SIZE. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{compress_8h_a19efdb6128f5d9e7f7fad6138d5cde91}\label{compress_8h_a19efdb6128f5d9e7f7fad6138d5cde91} 
+\index{compress.h@{compress.h}!lz78\_compress\_logic@{lz78\_compress\_logic}}
+\index{lz78\_compress\_logic@{lz78\_compress\_logic}!compress.h@{compress.h}}
+\doxysubsubsection{\texorpdfstring{lz78\_compress\_logic()}{lz78\_compress\_logic()}}
+{\footnotesize\ttfamily void lz78\+\_\+compress\+\_\+logic (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{input,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{output }\end{DoxyParamCaption})}
+
+
+
+Core LZ78 compression algorithm using a Hash Table. Reads characters one by one, searches for the longest existing prefix in the dictionary, and writes (prefix\+\_\+index, next\+\_\+char) pairs to the output file. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em input} & Pointer to the opened source file (text/binary). \\
+\hline
+{\em output} & Pointer to the opened .lz78 destination file. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{compress_8h_a92981654ac5bf8670b4c39073461e891}\label{compress_8h_a92981654ac5bf8670b4c39073461e891} 
+\index{compress.h@{compress.h}!lz78\_visual\_debug@{lz78\_visual\_debug}}
+\index{lz78\_visual\_debug@{lz78\_visual\_debug}!compress.h@{compress.h}}
+\doxysubsubsection{\texorpdfstring{lz78\_visual\_debug()}{lz78\_visual\_debug()}}
+{\footnotesize\ttfamily void lz78\+\_\+visual\+\_\+debug (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{input,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{output }\end{DoxyParamCaption})}
+
+
+
+An instrumented version of the LZ78 algorithm for educational purposes. Performs compression while printing a step-\/by-\/step trace of dictionary hits (EXISTE) and misses (NOVO) to the console. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em input} & Pointer to the source file. \\
+\hline
+{\em output} & Pointer to the binary output file. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{compress_8h_a813ec5ac5afc28f1d9bc598e37d266b6}\label{compress_8h_a813ec5ac5afc28f1d9bc598e37d266b6} 
+\index{compress.h@{compress.h}!print\_final\_dictionary@{print\_final\_dictionary}}
+\index{print\_final\_dictionary@{print\_final\_dictionary}!compress.h@{compress.h}}
+\doxysubsubsection{\texorpdfstring{print\_final\_dictionary()}{print\_final\_dictionary()}}
+{\footnotesize\ttfamily void print\+\_\+final\+\_\+dictionary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashEntry}{Hash\+Entry}} \texorpdfstring{$\ast$}{*}}]{hash\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+Debug helper to visualize the state of the Hash Table. Iterates through the hash table and prints the first 50 entries, showing how sequences are mapped to dictionary indices. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em hash\+\_\+table} & Pointer to the calloc\textquotesingle{}d \doxylink{structHashEntry}{Hash\+Entry} array. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}

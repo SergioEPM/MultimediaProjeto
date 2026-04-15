@@ -1,0 +1,164 @@
+\doxysection{Testes\+Code.\+h File Reference}
+\hypertarget{TestesCode_8h}{}\label{TestesCode_8h}\index{TestesCode.h@{TestesCode.h}}
+
+
+Header file containing testes and calling the right functions.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for Testes\+Code.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{TestesCode_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{TestesCode_8h_af81c8bc9afb4970c9cb280c2a17ff2e2}{Open\+File}} (char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Helper function to safely open files. Provides a centralized way to open files in binary read mode with built-\/in error reporting to stderr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TestesCode_8h_a851d75708ace666c5e5caef118acb56e}{Teste\+\_\+compress}} (const char \texorpdfstring{$\ast$}{*}in\+\_\+path, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}folder)
+\begin{DoxyCompactList}\small\item\em Unit test wrapper for the compression stage. Opens a specific source file, runs the compression logic, and ensures the file handle is closed properly afterward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TestesCode_8h_a3b7890b8ffa84a891cededb819c65257}{Teste\+\_\+decompress}} (const char \texorpdfstring{$\ast$}{*}in\+\_\+folder, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}out\+\_\+folder)
+\begin{DoxyCompactList}\small\item\em Unit test wrapper for the decompression stage. Locates the .lz78 file in the input folder and restores it to the output folder. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TestesCode_8h_a7b592148f90b3dc12cc8f5e00c493d4e}{Compress\+\_\+\+Decompress\+\_\+\+ALL}} (const char \texorpdfstring{$\ast$}{*}comp\+\_\+dir, const char \texorpdfstring{$\ast$}{*}rest\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Batch processor for the Silesia Corpus. Manually iterates through all 12 standard files in the Silesia dataset (dickens, mozilla, etc.), performing a full compression/decompression cycle on each. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TestesCode_8h_acfc6ba1d6ded1cefd4277b5dd332032b}{Compress\+\_\+\+Decompress\+\_\+\+Especifico}} (const char \texorpdfstring{$\ast$}{*}comp\+\_\+dir, const char \texorpdfstring{$\ast$}{*}rest\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Performance benchmarking tool for a specific file. Compresses and decompresses the "{}dickens"{} file while tracking execution time using the clock() function. Prints a detailed report of the time taken for each stage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TestesCode_8h_adcfee568cee0889c2b1688d68dcea43a}{Teste\+\_\+\+String\+\_\+\+Manual}} (const char \texorpdfstring{$\ast$}{*}comp\+\_\+dir, const char \texorpdfstring{$\ast$}{*}rest\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Interactive debug mode for custom string testing. Allows the user to type a phrase in the console, saves it to a temporary file, and runs the "{}\+Visual Debug"{} versions of both compression and decompression to show exactly how the LZ78 dictionary evolves. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing testes and calling the right functions. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{TestesCode_8h_a7b592148f90b3dc12cc8f5e00c493d4e}\label{TestesCode_8h_a7b592148f90b3dc12cc8f5e00c493d4e} 
+\index{TestesCode.h@{TestesCode.h}!Compress\_Decompress\_ALL@{Compress\_Decompress\_ALL}}
+\index{Compress\_Decompress\_ALL@{Compress\_Decompress\_ALL}!TestesCode.h@{TestesCode.h}}
+\doxysubsubsection{\texorpdfstring{Compress\_Decompress\_ALL()}{Compress\_Decompress\_ALL()}}
+{\footnotesize\ttfamily void Compress\+\_\+\+Decompress\+\_\+\+ALL (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{comp\+\_\+dir,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{rest\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Batch processor for the Silesia Corpus. Manually iterates through all 12 standard files in the Silesia dataset (dickens, mozilla, etc.), performing a full compression/decompression cycle on each. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em comp\+\_\+dir} & Directory to store compressed files. \\
+\hline
+{\em rest\+\_\+dir} & Directory to store restored files. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{TestesCode_8h_acfc6ba1d6ded1cefd4277b5dd332032b}\label{TestesCode_8h_acfc6ba1d6ded1cefd4277b5dd332032b} 
+\index{TestesCode.h@{TestesCode.h}!Compress\_Decompress\_Especifico@{Compress\_Decompress\_Especifico}}
+\index{Compress\_Decompress\_Especifico@{Compress\_Decompress\_Especifico}!TestesCode.h@{TestesCode.h}}
+\doxysubsubsection{\texorpdfstring{Compress\_Decompress\_Especifico()}{Compress\_Decompress\_Especifico()}}
+{\footnotesize\ttfamily void Compress\+\_\+\+Decompress\+\_\+\+Especifico (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{comp\+\_\+dir,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{rest\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Performance benchmarking tool for a specific file. Compresses and decompresses the "{}dickens"{} file while tracking execution time using the clock() function. Prints a detailed report of the time taken for each stage. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em comp\+\_\+dir} & Directory for the compressed output. \\
+\hline
+{\em rest\+\_\+dir} & Directory for the restored output. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{TestesCode_8h_af81c8bc9afb4970c9cb280c2a17ff2e2}\label{TestesCode_8h_af81c8bc9afb4970c9cb280c2a17ff2e2} 
+\index{TestesCode.h@{TestesCode.h}!OpenFile@{OpenFile}}
+\index{OpenFile@{OpenFile}!TestesCode.h@{TestesCode.h}}
+\doxysubsubsection{\texorpdfstring{OpenFile()}{OpenFile()}}
+{\footnotesize\ttfamily FILE \texorpdfstring{$\ast$}{*} Open\+File (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Helper function to safely open files. Provides a centralized way to open files in binary read mode with built-\/in error reporting to stderr. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path/name of the file to open. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+FILE\texorpdfstring{$\ast$}{*} A pointer to the opened file, or NULL if it failed. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{TestesCode_8h_a851d75708ace666c5e5caef118acb56e}\label{TestesCode_8h_a851d75708ace666c5e5caef118acb56e} 
+\index{TestesCode.h@{TestesCode.h}!Teste\_compress@{Teste\_compress}}
+\index{Teste\_compress@{Teste\_compress}!TestesCode.h@{TestesCode.h}}
+\doxysubsubsection{\texorpdfstring{Teste\_compress()}{Teste\_compress()}}
+{\footnotesize\ttfamily void Teste\+\_\+compress (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{in\+\_\+path,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{folder }\end{DoxyParamCaption})}
+
+
+
+Unit test wrapper for the compression stage. Opens a specific source file, runs the compression logic, and ensures the file handle is closed properly afterward. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em in\+\_\+path} & Full path to the original file. \\
+\hline
+{\em name} & The name to be used for the compressed output. \\
+\hline
+{\em folder} & The destination directory for the .lz78 file. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{TestesCode_8h_a3b7890b8ffa84a891cededb819c65257}\label{TestesCode_8h_a3b7890b8ffa84a891cededb819c65257} 
+\index{TestesCode.h@{TestesCode.h}!Teste\_decompress@{Teste\_decompress}}
+\index{Teste\_decompress@{Teste\_decompress}!TestesCode.h@{TestesCode.h}}
+\doxysubsubsection{\texorpdfstring{Teste\_decompress()}{Teste\_decompress()}}
+{\footnotesize\ttfamily void Teste\+\_\+decompress (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{in\+\_\+folder,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{out\+\_\+folder }\end{DoxyParamCaption})}
+
+
+
+Unit test wrapper for the decompression stage. Locates the .lz78 file in the input folder and restores it to the output folder. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em in\+\_\+folder} & Where the compressed file is currently stored. \\
+\hline
+{\em name} & The base name of the file (without extension). \\
+\hline
+{\em out\+\_\+folder} & The destination for the restored .txt file. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{TestesCode_8h_adcfee568cee0889c2b1688d68dcea43a}\label{TestesCode_8h_adcfee568cee0889c2b1688d68dcea43a} 
+\index{TestesCode.h@{TestesCode.h}!Teste\_String\_Manual@{Teste\_String\_Manual}}
+\index{Teste\_String\_Manual@{Teste\_String\_Manual}!TestesCode.h@{TestesCode.h}}
+\doxysubsubsection{\texorpdfstring{Teste\_String\_Manual()}{Teste\_String\_Manual()}}
+{\footnotesize\ttfamily void Teste\+\_\+\+String\+\_\+\+Manual (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{comp\+\_\+dir,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{rest\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Interactive debug mode for custom string testing. Allows the user to type a phrase in the console, saves it to a temporary file, and runs the "{}\+Visual Debug"{} versions of both compression and decompression to show exactly how the LZ78 dictionary evolves. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em comp\+\_\+dir} & Directory for temporary compressed data. \\
+\hline
+{\em rest\+\_\+dir} & Directory for temporary restored data. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
