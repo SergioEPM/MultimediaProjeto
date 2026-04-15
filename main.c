@@ -2,7 +2,11 @@
 #include <sys/stat.h>
 #include "TestesCode.h"
 
-
+/// Main function that allows to change the type of run
+/// 1-All files
+/// 2-Especific file
+/// 3-Insert String
+/// @return
 int main(void) {
     // Variable names for your folders
     const char* comp_dir = "silesia_compress";

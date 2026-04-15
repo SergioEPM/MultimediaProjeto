@@ -45,7 +45,7 @@ void lz78_decompress_logic(FILE* input, FILE* output) {
     }
     free(dict);
 }
-/// Função principal de descompressão
+
 void decompress_and_save(FILE* input, const char* folder, const char* filename) {
     char target_path[256];
 
@@ -139,6 +139,7 @@ void lz78_decompress_visual_debug(FILE* input, FILE* output) {
     free(dict);
     printf("----------------------------------------------------------------------\n");
 }
+
 void decompress_and_save_debug(FILE* input, const char* folder, const char* filename) {
     char target_path[256];
 

@@ -1,8 +1,17 @@
 #include "compress.h"
 
+
+/**
+ * @brief Simple hash function for the dictionary lookup.
+ * Combines the current prefix index and the next character to generate a hash key.
+ * * @param prefix The index of the already existing sequence in the dictionary.
+ * @param c The next character in the input stream.
+ * @return unsigned int The calculated hash index within HASH_SIZE.
+ */
 unsigned int hash_func(unsigned short prefix, char c) {
     return ((unsigned int)prefix << 8 | (unsigned char)c) % HASH_SIZE;
 }
+
 
 void lz78_compress_logic(FILE* input, FILE* output) {
     // calloc is important: it sets everything to 0
