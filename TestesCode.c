@@ -166,3 +166,10 @@ void Teste_String_Manual(const char* comp_dir, const char* rest_dir) {
         }
         printf("========================================\n\n");
     }
+
+void Teste_Otimizacao_Dicionario(const char* comp_dir) {
+    printf("\n--- A INICIAR TESTE DE OTIMIZACAO DE DICIONARIO ---\n");
+
+    // Esta função vive no ficheiro DicionarioOtimizacao.c
+    Testar_Diferentes_Tamanhos_Dicionario(comp_dir);
+}

@@ -47,7 +47,7 @@ int main(void) {
     // --- Opções de Execução ---
 
     // 1. Comprimir e descomprimir um ficheiro específico
-    Compress_Decompress_Especifico(comp_dir, rest_dir);
+    //Compress_Decompress_Especifico(comp_dir, rest_dir);
 
     // 2. Comprimir e descomprimir todos os ficheiros do Silesia Corpus
     // Compress_Decompress_ALL(comp_dir, rest_dir);
@@ -55,5 +55,7 @@ int main(void) {
     // 3. Teste Manual com String (útil para o modo Visual Debug)
     // Teste_String_Manual(comp_dir, rest_dir);
 
+    // 4. Teste de Otimização do Dicionário
+    Teste_Otimizacao_Dicionario(comp_dir);
     return 0;
 }

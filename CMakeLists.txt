@@ -10,5 +10,7 @@ add_executable(MultimediaProjeto main.c
         decompress.h
         funcoes.c
         funcoes.h
+        DicionarioOtimizacao.c
+        DicionarioOtimizacao.h
         TestesCode.c
-        TestesCode.h)
+        TestesCode.h )

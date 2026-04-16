@@ -13,6 +13,9 @@
 #include "compress.h"
 #include "funcoes.h"
 #include "decompress.h"
+#include "DicionarioOtimizacao.h"
+
+
 
 /**
  * @file TestesCode.h
@@ -69,5 +72,8 @@ void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir);
  * @param rest_dir Directory for temporary restored data.
  */
 void Teste_String_Manual(const char* comp_dir, const char* rest_dir);
+
+// Nova função de teste para a otimização do dicionário
+void Teste_Otimizacao_Dicionario(const char* comp_dir);
 
 #endif //MULTIMEDIAPROJETO_TESTESCODE_H
