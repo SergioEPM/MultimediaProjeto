@@ -26,6 +26,13 @@ void Teste_decompress(const char* in_folder, const char* name, const char* out_f
     }
 }
 
+void testeEntropia(const char *file_path)
+{
+    float entropy = compressionEntropy(file_path);
+
+    printf("Entropia: %.2f\n", entropy);
+}
+
 void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir) {
     // --- MANUAL PATHS FOR THE ENTIRE SILESIA CORPUS ---
 

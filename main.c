@@ -39,21 +39,25 @@ int main(void) {
     // Nomes das pastas de saída
     const char* comp_dir = "silesia_compress";
     const char* rest_dir = "silesia_restored";
+    const char* p_dickens = "silesia/dickens";
 
     // Cria as pastas usando a macro portátil
     MKDIR(comp_dir);
     MKDIR(rest_dir);
+    MKDIR(p_dickens);
 
     // --- Opções de Execução ---
 
     // 1. Comprimir e descomprimir um ficheiro específico
-    Compress_Decompress_Especifico(comp_dir, rest_dir);
+    // Compress_Decompress_Especifico(comp_dir, rest_dir);
 
     // 2. Comprimir e descomprimir todos os ficheiros do Silesia Corpus
     // Compress_Decompress_ALL(comp_dir, rest_dir);
 
     // 3. Teste Manual com String (útil para o modo Visual Debug)
     // Teste_String_Manual(comp_dir, rest_dir);
+
+    testeEntropia(p_dickens);
 
     return 0;
 }

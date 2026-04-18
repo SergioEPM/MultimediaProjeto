@@ -32,9 +32,6 @@ long int findSize(const char file_name[])
 
 float compressionRatio(const char *uncompressed_path, const char *compressed_path)
 {
-    // FILE *uncomp = OpenFile(uncompressed_path);
-    // FILE *comp = OpenFile(compressed_path);
-
     int uncomp_size = findSize(uncompressed_path);
     int comp_size = findSize(compressed_path);
 
@@ -43,4 +40,41 @@ float compressionRatio(const char *uncompressed_path, const char *compressed_pat
     result = (float)uncomp_size / (float)comp_size;
 
     return result;
+}
+
+float compressionEntropy(const char *file_path)
+{
+    int freq[256] = {0};
+    int c = 0;              // caracter atual, convertido de char para int
+    int value_count = 0;    // contagem dos valores totais do ficheiro para a conta das probabilidades
+
+    float entropy = 0.0;
+
+    FILE *fptr = fopen(file_path, "r");
+    if(fptr == NULL)
+    {
+        fprintf(stderr, "Error: Could not open file %s\n", file_path);
+        return -1;
+    }
+
+    while((c = fgetc(fptr)) != EOF)
+    {
+        freq[(unsigned char)c]++;       // conta a frequência do caracter específico
+        value_count++;                  // incrementa a conta dos caracteres totais
+    }
+
+    // ciclo for() para o somatório
+    for(int i = 0; i < 256; i++)
+    {
+        if(freq[i] > 0)
+        {
+            float probability = (float)freq[i] / (float)value_count;
+            entropy = entropy + (probability * log(probability));
+        }
+    }
+
+    entropy = -entropy;     // sinal tem de trocar no fim
+
+    fclose(fptr);
+    return entropy;
 }

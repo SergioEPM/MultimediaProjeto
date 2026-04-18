@@ -12,3 +12,5 @@ add_executable(MultimediaProjeto main.c
         funcoes.h
         TestesCode.c
         TestesCode.h)
+
+target_link_libraries(MultimediaProjeto m)

@@ -40,6 +40,8 @@ void Teste_compress(const char* in_path, const char* name, const char* folder);
  */
 void Teste_decompress(const char* in_folder, const char* name, const char* out_folder);
 
+void testeEntropia(const char *file_path);
+
 /**
  * @brief Batch processor for the Silesia Corpus.
  * Manually iterates through all 12 standard files in the Silesia dataset
