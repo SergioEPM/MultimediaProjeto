@@ -24,7 +24,7 @@
  * @brief Unit test wrapper for the compression stage.
  * Opens a specific source file, runs the compression logic, and ensures
  * the file handle is closed properly afterward.
- * * @param in_path Full path to the original file.
+ * @param in_path Full path to the original file.
  * @param name The name to be used for the compressed output.
  * @param folder The destination directory for the .lz78 file.
  */
@@ -34,12 +34,16 @@ void Teste_compress(const char* in_path, const char* name, const char* folder);
  * @brief Unit test wrapper for the decompression stage.
  * Locates the .lz78 file in the input folder and restores it to the
  * output folder.
- * * @param in_folder Where the compressed file is currently stored.
+ * @param in_folder Where the compressed file is currently stored.
  * @param name The base name of the file (without extension).
  * @param out_folder The destination for the restored .txt file.
  */
 void Teste_decompress(const char* in_folder, const char* name, const char* out_folder);
 
+/**
+ * @brief Teste da função compressionEntropy()
+ * @param file_path Caminho do ficheiro a calcular entropia
+ */
 void testeEntropia(const char *file_path);
 
 /**
@@ -47,7 +51,7 @@ void testeEntropia(const char *file_path);
  * Manually iterates through all 12 standard files in the Silesia dataset
  * (dickens, mozilla, etc.), performing a full compression/decompression
  * cycle on each.
- * * @param comp_dir Directory to store compressed files.
+ * @param comp_dir Directory to store compressed files.
  * @param rest_dir Directory to store restored files.
  */
 void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir);
@@ -57,7 +61,7 @@ void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir);
  * Compresses and decompresses the "dickens" file while tracking execution
  * time using the clock() function. Prints a detailed report of the
  * time taken for each stage.
- * * @param comp_dir Directory for the compressed output.
+ * @param comp_dir Directory for the compressed output.
  * @param rest_dir Directory for the restored output.
  */
 void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir);
@@ -67,7 +71,7 @@ void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir);
  * Allows the user to type a phrase in the console, saves it to a temporary
  * file, and runs the "Visual Debug" versions of both compression and
  * decompression to show exactly how the LZ78 dictionary evolves.
- * * @param comp_dir Directory for temporary compressed data.
+ * @param comp_dir Directory for temporary compressed data.
  * @param rest_dir Directory for temporary restored data.
  */
 void Teste_String_Manual(const char* comp_dir, const char* rest_dir);
