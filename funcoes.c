@@ -10,10 +10,10 @@ FILE* OpenFile(char* filename) {
 
 long int findSize(const char file_name[])
 {
-    // opening the file in read mode
+    // abrir o ficheiro no modo leitura
     FILE* fp = fopen(file_name, "r");
 
-    // checking if the file exist or not
+    // verificar se o ficheiro existe ou não
     if (fp == NULL) {
         printf("File Not Found!\n");
         return -1;
@@ -21,10 +21,10 @@ long int findSize(const char file_name[])
 
     fseek(fp, 0L, SEEK_END);
 
-    // calculating the size of the file
+    // calcular o tamanho do ficheiro
     long int res = ftell(fp);
 
-    // closing the file
+    // fechar o ficheiro
     fclose(fp);
 
     return res;

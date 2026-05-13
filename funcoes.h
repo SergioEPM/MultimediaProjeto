@@ -5,11 +5,11 @@
 #include <stdio.h>
 
 /**
- * @brief Helper function to safely open files.
- * Provides a centralized way to open files in binary read mode with
- * built-in error reporting to stderr.
- * @param filename The path/name of the file to open.
- * @return FILE* A pointer to the opened file, or NULL if it failed.
+ * @brief Função ajudante para abrir ficheiros de maneira segura.
+ * Oferece uma forma centralizada de abrir ficheiros em modo leitura 
+ * binária com relatórios de erros para o stderr integrados.
+ * @param filename O nome/caminho do ficheiro a abrir.
+ * @return FILE* Um pointer para o ficheiro aberto, ou NULL se falhar.
  */
 FILE* OpenFile(char* filename);
 
@@ -21,7 +21,8 @@ long int findSize(const char file_name[]);
 
 /**
  * @brief Retorna o rácio de compressão do processo de compressão feito
- * Divide o tamanho do ficheiro antes da compressão e o tamanho do ficheiro depois da compressão
+ * Divide o tamanho do ficheiro antes da compressão e o tamanho do ficheiro 
+ * depois da compressão.
  * @param uncompressed_path Caminho do ficheiro intacto
  * @param compressed_path Caminho do ficheiro comprimido
  */

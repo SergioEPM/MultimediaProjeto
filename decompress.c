@@ -13,15 +13,15 @@ void lz78_decompress_logic(FILE* input, FILE* output) {
 
     DecompEntry* dict = malloc(sizeof(DecompEntry) * MAX_DICT_SIZE);
     unsigned int dict_count = 1;
-    unsigned short idx; // Change back to short
+    unsigned short idx; // Mudança de volta para short
 
     
     while (fread(&idx, sizeof(unsigned short), 1, input) == 1) {
         int next_char = fgetc(input);
         if (next_char == EOF) break;
 
-        // Reconstruct string using a stack
-        static char temp_stack[MAX_DICT_SIZE]; // Large buffer for long patterns
+        // Reconstruir usand uma stack
+        static char temp_stack[MAX_DICT_SIZE]; // Buffer grande para padrões longos
         int top = 0;
 
         temp_stack[top++] = (char)next_char;

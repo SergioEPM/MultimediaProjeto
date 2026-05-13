@@ -6,7 +6,7 @@ unsigned int hash_func(unsigned short prefix, char c) {
 
 
 void lz78_compress_logic(FILE* input, FILE* output) {
-    // calloc is important: it sets everything to 0
+    // calloc é importante: põe tudo a 0
     HashEntry* hash_table = calloc(HASH_SIZE, sizeof(HashEntry));
 
     unsigned short dict_count = 1;
@@ -28,7 +28,7 @@ void lz78_compress_logic(FILE* input, FILE* output) {
         if (found_index != 0) {
             current_prefix = found_index;
         } else {
-            // BACK TO 2 BYTES: Significant space saving!
+            // DE VOLTA A 2 BYTES: Poupa espaço significante!
             fwrite(&current_prefix, sizeof(unsigned short), 1, output);
             fputc(c, output);
 
@@ -56,16 +56,16 @@ void lz78_compress_logic(FILE* input, FILE* output) {
 void compress_and_save_logic(FILE* input, const char* folder, const char* filename) {
     char target_path[256];
 
-    // Build path: "silesia_output/dickens.lz78"
+    // Caminho da build: "silesia_output/dickens.lz78"
     snprintf(target_path, sizeof(target_path), "%s/%s.lz78", folder, filename);
 
-    FILE* output_file = fopen(target_path, "wb"); // "wb" for Write Binary
+    FILE* output_file = fopen(target_path, "wb"); // "wb" para Write Binary
     if (output_file == NULL) {
         perror("Failed to create output file");
         return;
     }
 
-    // Call the LZ78 function
+    // Chama a função LZ78
     lz78_compress_logic(input, output_file);
 
     fclose(output_file);
@@ -167,13 +167,13 @@ void compress_and_save_logic_debug(FILE* input, const char* folder, const char* 
     // Build path: "silesia_output/dickens.lz78"
     snprintf(target_path, sizeof(target_path), "%s/%s.lz78", folder, filename);
 
-    FILE* output_file = fopen(target_path, "wb"); // "wb" for Write Binary
+    FILE* output_file = fopen(target_path, "wb"); // "wb" para Write Binary
     if (output_file == NULL) {
         perror("Failed to create output file");
         return;
     }
 
-    // Call the LZ78 function
+    // Chama a função LZ78
     lz78_visual_debug(input, output_file);
 
     fclose(output_file);

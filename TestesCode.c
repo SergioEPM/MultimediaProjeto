@@ -34,7 +34,7 @@ void testeEntropia(const char *file_path)
 }
 
 void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir) {
-    // --- MANUAL PATHS FOR THE ENTIRE SILESIA CORPUS ---
+    // --- CAMINHOS MANUAIS PARA O SILESIA CORPUS INTEIRO ---
 
     const char* p_dickens = "silesia/dickens";
     Teste_compress(p_dickens, "dickens", comp_dir);
@@ -172,4 +172,4 @@ void Teste_String_Manual(const char* comp_dir, const char* rest_dir) {
             fclose(f_res);
         }
         printf("========================================\n\n");
-    }
+}

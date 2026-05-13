@@ -15,19 +15,19 @@
 /**
  * @mainpage LZ78 Compression Project
  *
- * ## Overview
- * This project implements the LZ78 algorithm for multimedia data compression.
- * It features a high-performance Hash Table implementation to ensure O(1)
- * average-time complexity during dictionary lookups.
+ * ## Resumo
+ * Este projeto implementa o algoritmo LZ78 para compressão de dados multimédia.
+ * Implementa uma hash table para assegurar complexidade de tempo média O(1) 
+ * durante as pesquisas no dicionário
  *
- * ## Key Modules
- * - **Compression:** Handles dictionary building and token generation.
- * - **Decompression:** Reconstructs original data using a stack-based walk.
- * - **Test Suite:** Includes automated testing for the Silesia Corpus.
+ * ## Módulos Chave
+ * - **Compression:** Gere a construção de dicionários e a geração de tokens.
+ * - **Decompression:** Reconstrói os dados originais utilizando uma pesquisa baseada em pilha.
+ * - **Conjunto de Testes** Inclui testes automatizados para o Silesia Corpus
  *
- * ## How to Navigate
- * Use the tabs above to explore the **Classes** (structs like HashEntry)
- * or **Files** to see the documented functions.
+ * ## Como Navegar
+ * Utilize as tabs acima para explorar as **Classes** (structs como HashEntry)
+ * ou **Files** para ver as funções documentadas
  */
 
 /**

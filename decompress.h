@@ -12,50 +12,49 @@
 
 /**
  * @file decompress.h
- * @brief Header file containing LZ78 decompression structures and prototypes.
+ * @brief Ficheiro header que contém estruturas e protótipos para descompressão LZ78.
  */
 
 
 
 /**
- * @brief Core LZ78 decompression algorithm using an array-based dictionary.
- * Reconstructs the original data by reading (index, character) pairs. It uses a
- * stack-based approach to "walk back" through the dictionary and print sequences
- * in the correct order.
- * @param input Pointer to the .lz78 compressed binary file.
- * @param output Pointer to the destination file for the restored data.
+ * @brief Algoritmo de descompressão LZ78 principal a usar um dicionário baseado num array.
+ * Reconstrói os dados originais lendo pares (índice, caractere). Utiliza um método baseado
+ * numa stack para andar para trás no dicionário e imprimir sequências na ordem correta.
+ * @param input Apontador para o ficheiro binário .lz78 comprimido.
+ * @param output Apontador para o ficheiro destino para os dados restaurados.
  */
 void lz78_decompress_logic(FILE* input, FILE* output);
 
 /**
- * @brief Handles file I/O boilerplate for standard decompression.
- * Generates the restored file path (e.g., adding "_restored.txt"), opens the
- * output stream, and executes the decompression logic.
- * @param input Pointer to the compressed source file.
- * @param folder The destination directory string (e.g., "silesia_restored").
- * @param filename The base name of the file being restored.
+ * @brief Gere o boilerplate de entrada e saída da descompressão padrão.
+ * Gera o caminho do ficheiro restaurado (ex.: adicionar "_restored.txt"), abre
+ * o output stream e executa a lógica de descompressão.
+ * @param input Pointer para o ficheiro fonte comprimido.
+ * @param folder A string da diretoria destino (ex.: "silesia_restored").
+ * @param filename O nome base do ficheiro a ser restaurado.
  */
 void decompress_and_save(FILE* input, const char* folder, const char* filename);
 
 
 /**
- * @brief Instrumented decompression logic for real-time trace analysis.
- * Prints a step-by-step table to the console showing which token index is
- * being read, the new character added, and the full string sequence being
- * reconstructed from the dictionary.
- * @param input Pointer to the compressed binary file.
- * @param output Pointer to the restored destination file.
+ * @brief Lógica de descompressão para análise de seguimento em tempo real
+ * Imprime uma tabela para a consola passo a passo mostrando qual índice de 
+ * tokens está a ser lido, o novo caractere adicionado e a string inteira a 
+ * ser reconstruída a partir do dicionário.
+ * @param input Pointer para o ficheiro binário comprimido.
+ * @param output Pointer para o ficheiro destino restaurado.
  */
 void lz78_decompress_visual_debug(FILE* input, FILE* output);
 
 
 /**
- * @brief Wrapper for the visual decompression debug mode.
- * Prepares the output file and redirects the process to the visual
- * tracer (lz78_decompress_visual_debug) to monitor the dictionary reconstruction.
- * @param input Pointer to the compressed source file.
- * @param folder The destination directory string.
- * @param filename The base name of the file.
+ * @brief Wrapper para o modo de debug da descompressão visual.
+ * Prepara o ficheiro de output e redireciona o processo para o tracer visual 
+ * (lz78_decompress_visual_debug) para monitorizar a reconstrução do dicionário.
+ * @param input Pointer para o ficheiro comprimido fonte.
+ * @param folder A string da diretoria destino.
+ * @param filename O nome base do ficheiro.
  */
 void decompress_and_save_debug(FILE* input, const char* folder, const char* filename);
 
