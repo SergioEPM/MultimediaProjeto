@@ -1,29 +1,38 @@
-# LZ78 Multimedia Compressor
+# MultimediaProjeto
 
-Implementation of the LZ78 compression algorithm using a **Hash Table** for efficient dictionary lookups ($O(1)$ average complexity).
+Projeto final da cadeira de Multimédia 2 do curso de Engenharia Informática da Universidade Fernando Pessoa dos alunos Sérgio Magalhães, [Diogo Oliveira](https://github.com/DiogoOliveira04ufp) e [João Nascimento](https://github.com/13JPNascimento).
 
-## 🛠 Features
-- **Fast Search:** Uses a prime-sized hash table (131,071) to minimize collisions.
-- **Visual Debug:** Real-time tracing of dictionary "Hits" and "Misses".
-- **Silesia Corpus Support:** Automated testing for standard compression datasets.
 
-## 📂 Module Documentation
+## Acerca do projeto
+Consiste numa implementação do algoritmo de compressão sem perdas LZ78 com um dicionário de hash table em C. Funciona a partir de testes pré-concebidos que serão chamados na função `main()` de acordo com o objetivo a demonstrar.
 
-### Compression (`compress.h`)
-| Function | Description |
-| :--- | :--- |
-| `hash_func` | Generates a hash key from a prefix index and character. |
-| `lz78_compress_logic` | The core loop that converts input bytes into (index, char) tokens. |
-| `lz78_visual_debug` | Step-by-step console trace of the compression process. |
+Ainda inclui cálculos da entropia dos ficheiros e do rácio de compressão.
 
-### Decompression (`decompress.h`)
-| Function | Description |
-| :--- | :--- |
-| `lz78_decompress_logic` | Reconstructs data using a stack-based dictionary walk. |
-| `decompress_and_save` | Handles binary file reading and output restoration. |
+## Testes incluídos
 
-## 🚀 How to Run
-Compile using `gcc` or `cc`:
-```bash
-cc main.c compress.c decompress.c TestesCode.c -o lz78_tool
-./lz78_tool
+Para executar o programa terá de se escolher o teste que se quer executar e editar o `main()`. Estes são os testes.
+
+* `Compress_Decompress_Especifico()` - Faz a compressão e descompressão de apenas um ficheiro que terá de ser passado pelos argumentos da função.
+* `Compress_Decompress_ALL()` - Faz a compressão e descompressão de todos os ficheiros no silesia.
+* `Teste_String_Manual()` - Faz a compressão e descompressão de uma string introduzida pelo utilizador.
+* `testeEntropia()` - Executa a função do cálculo da entropia num ficheiro específico.
+
+## Como compilar o código e executar
+
+Este é um projeto CMake portanto será necessário instalar o CMake primeiro.
+
+Poderá ser compilado e executado com estes comandos:
+
+* Unix (Mac/Linux):
+```sh
+cmake -S . -B build     # Apenas necessário antes de compilar pela primeira vez
+cmake --build build
+./build/MultimediaProjeto
+```
+
+* Windows (PowerShell):
+```ps1
+cmake -S . -B build     # Apenas necessário antes de compilar pela primeira vez
+cmake --build build
+.\build\MultimediaProjeto.exe
+```
