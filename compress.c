@@ -110,13 +110,21 @@ void lz78_visual_debug(FILE* input, FILE* output) {
     printf("%-20s | %-10s | %-20s\n", "Lendo (Pref, Char)", "Status", "Acao no Dicionario");
     printf("----------------------------------------------------------------------\n");
 
+    // Estrutura para armazenar a lista de tokens para o print final
+    typedef struct {
+        unsigned short p;
+        char c;
+    } Token;
+    Token tokens_gerados[MAX_DICT_SIZE];
+    int num_tokens = 0;
+
     HashEntry* hash_table = calloc(HASH_SIZE, sizeof(HashEntry));
     unsigned short dict_count = 1;
     unsigned short current_prefix = 0;
     int c;
 
     while ((c = fgetc(input)) != EOF) {
-        char display_char = (c == '\n') ? ' ' : (char)c; // Troca newline por espaço para não quebrar o print
+        char display_char = (c == '\n') ? ' ' : (char)c;
         unsigned int h = hash_func(current_prefix, (char)c);
         unsigned short found_index = 0;
 
@@ -129,17 +137,21 @@ void lz78_visual_debug(FILE* input, FILE* output) {
         }
 
         if (found_index != 0) {
-            // O algoritmo já viu esta sequência!
             printf("(%3d, '%c')          | EXISTE     | Novo Prefixo sera: %d\n",
                    current_prefix, display_char, found_index);
             current_prefix = found_index;
         } else {
-            // Sequência nova! Grava e cria entrada no dicionário
             printf("(%3d, '%c')          | NOVO       | Criando Indice %d -> Gravando no Ficheiro\n",
                    current_prefix, display_char, dict_count);
 
+            // Grava no ficheiro
             fwrite(&current_prefix, sizeof(unsigned short), 1, output);
             fputc(c, output);
+
+            // Guarda para o print final
+            tokens_gerados[num_tokens].p = current_prefix;
+            tokens_gerados[num_tokens].c = (char)c;
+            num_tokens++;
 
             if (dict_count < MAX_DICT_SIZE) {
                 hash_table[h].prefix_index = current_prefix;
@@ -147,18 +159,33 @@ void lz78_visual_debug(FILE* input, FILE* output) {
                 hash_table[h].dict_idx = dict_count;
                 dict_count++;
             }
-            current_prefix = 0; // Reseta para começar nova sequência
+            current_prefix = 0;
         }
     }
 
     if (current_prefix != 0) {
+        printf("(%3d, '\\0')         | FINAL      | Gravando Ultimo Prefixo -> Fim do Ficheiro\n",
+                current_prefix);
+
         fwrite(&current_prefix, sizeof(unsigned short), 1, output);
         fputc(0, output);
+
+        tokens_gerados[num_tokens].p = current_prefix;
+        tokens_gerados[num_tokens].c = '\0';
+        num_tokens++;
     }
 
-    print_final_dictionary(hash_table);
-    free(hash_table);
     printf("----------------------------------------------------------------------\n");
+
+    // --- O QUE TU PEDISTE: PRINT DA STRING DE TOKENS FINAL ---
+    printf("\nSEQUENCIA DE TOKENS FINAL:\n");
+    for (int i = 0; i < num_tokens; i++) {
+        char char_print = (tokens_gerados[i].c == '\0') ? '0' : tokens_gerados[i].c;
+        printf("(%d, '%c') ", tokens_gerados[i].p, char_print);
+    }
+    printf("\n\n");
+
+    free(hash_table);
 }
 
 void compress_and_save_logic_debug(FILE* input, const char* folder, const char* filename) {
