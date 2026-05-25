@@ -13,4 +13,6 @@ add_executable(MultimediaProjeto main.c
         DicionarioOtimizacao.c
         DicionarioOtimizacao.h
         TestesCode.c
-        TestesCode.h )
+        TestesCode.h)
+
+target_link_libraries(MultimediaProjeto m)
