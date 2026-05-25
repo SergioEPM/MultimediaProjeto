@@ -55,7 +55,7 @@ int main(void) {
     // Compress_Decompress_ALL(comp_dir, rest_dir);
 
     // 3. Teste Manual com String (útil para o modo Visual Debug)
-    Teste_String_Manual(comp_dir, rest_dir);
+    // Teste_String_Manual(comp_dir, rest_dir);
 
     // testeEntropia(p_dickens);
 
