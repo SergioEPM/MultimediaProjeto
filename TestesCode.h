@@ -19,57 +19,64 @@
 
 /**
  * @file TestesCode.h
- * @brief Header file containing testes and calling the right functions.
+ * @brief Ficheiro header para os testes do projeto.
  */
 
 
 /**
- * @brief Unit test wrapper for the compression stage.
- * Opens a specific source file, runs the compression logic, and ensures
- * the file handle is closed properly afterward.
- * * @param in_path Full path to the original file.
- * @param name The name to be used for the compressed output.
- * @param folder The destination directory for the .lz78 file.
+ * @brief Wrapper dos testes unitários do passo da compressão.
+ * Abre um ficheiro fonte específico, corre a lógica da compressão, e 
+ * certifica-se que o ficheiro é devidamente fechado.
+ * @param in_path O caminho inteiro para o ficheiro original.
+ * @param name O nome a ser usado para o output comprimido.
+ * @param folder A diretoria destino para o ficheiro .lz78.
  */
 void Teste_compress(const char* in_path, const char* name, const char* folder);
 
 /**
- * @brief Unit test wrapper for the decompression stage.
- * Locates the .lz78 file in the input folder and restores it to the
- * output folder.
- * * @param in_folder Where the compressed file is currently stored.
- * @param name The base name of the file (without extension).
- * @param out_folder The destination for the restored .txt file.
+ * @brief Wrapper dos testes unitários do passo da compressão.
+ * Localiza o ficheiro .lz78 na pasta do input e restaura-a para a 
+ * pasta output.
+ * @param in_folder Onde o ficheiro comprimido está armazenado neste 
+ * momento.
+ * @param name O nome base do ficheiro (sem a extensão).
+ * @param out_folder O destino para o ficheiro .txt restaurado.
  */
 void Teste_decompress(const char* in_folder, const char* name, const char* out_folder);
 
 /**
- * @brief Batch processor for the Silesia Corpus.
- * Manually iterates through all 12 standard files in the Silesia dataset
- * (dickens, mozilla, etc.), performing a full compression/decompression
- * cycle on each.
- * * @param comp_dir Directory to store compressed files.
- * @param rest_dir Directory to store restored files.
+ * @brief Teste da função compressionEntropy()
+ * @param file_path Caminho do ficheiro a calcular entropia
+ */
+void testeEntropia(const char *file_path);
+
+/**
+ * @brief Processador em lote para o Corpus da Silésia.
+ * Itera manualmente pelos 12 ficheiros normais no dataset Silesia (dickens, 
+ * mozilla, etc.), fazendo um ciclo compressão/descompressão inteiro em cada 
+ * um.
+ * @param comp_dir Diretoria para armazenar ficheiros comprimidos.
+ * @param rest_dir Diretoria para armazenar ficheiros restaurados.
  */
 void Compress_Decompress_ALL(const char* comp_dir, const char* rest_dir);
 
 /**
- * @brief Performance benchmarking tool for a specific file.
- * Compresses and decompresses the "dickens" file while tracking execution
- * time using the clock() function. Prints a detailed report of the
- * time taken for each stage.
- * * @param comp_dir Directory for the compressed output.
- * @param rest_dir Directory for the restored output.
+ * @brief Ferramenta de benchmark para um ficheiro específico.
+ * Comprime e descomprime o ficheiro "dickens" enquanto conta o tempo de 
+ * execução com a função `clock()`. Imprime um relatório detalhado do tempo 
+ * que cada passo demorou.
+ * @param comp_dir Diretoria do output comprimido.
+ * @param rest_dir Diretoria do output restaurado.
  */
 void Compress_Decompress_Especifico(const char* comp_dir, const char* rest_dir);
 
 /**
- * @brief Interactive debug mode for custom string testing.
- * Allows the user to type a phrase in the console, saves it to a temporary
- * file, and runs the "Visual Debug" versions of both compression and
- * decompression to show exactly how the LZ78 dictionary evolves.
- * * @param comp_dir Directory for temporary compressed data.
- * @param rest_dir Directory for temporary restored data.
+ * @brief Modo de debug interativo para testes em strings personalizadas.
+ * Permite ao utilizador escrever uma frase na consola, escreve-a num ficheiro 
+ * temporário e corre a versão "Visual Debug" da compressão e descompressão 
+ * para mostrar exatamente como o dicionário LZ78 evolui.
+ * @param comp_dir Diretoria para os dados comprimidos temporários.
+ * @param rest_dir Diretoria para os dados restaurados temporários.
  */
 void Teste_String_Manual(const char* comp_dir, const char* rest_dir);
 

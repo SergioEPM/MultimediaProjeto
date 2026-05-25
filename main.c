@@ -15,19 +15,19 @@
 /**
  * @mainpage LZ78 Compression Project
  *
- * ## Overview
- * This project implements the LZ78 algorithm for multimedia data compression.
- * It features a high-performance Hash Table implementation to ensure O(1)
- * average-time complexity during dictionary lookups.
+ * ## Resumo
+ * Este projeto implementa o algoritmo LZ78 para compressão de dados multimédia.
+ * Implementa uma hash table para assegurar complexidade de tempo média O(1) 
+ * durante as pesquisas no dicionário
  *
- * ## Key Modules
- * - **Compression:** Handles dictionary building and token generation.
- * - **Decompression:** Reconstructs original data using a stack-based walk.
- * - **Test Suite:** Includes automated testing for the Silesia Corpus.
+ * ## Módulos Chave
+ * - **Compression:** Gere a construção de dicionários e a geração de tokens.
+ * - **Decompression:** Reconstrói os dados originais utilizando uma pesquisa baseada em pilha.
+ * - **Conjunto de Testes** Inclui testes automatizados para o Silesia Corpus
  *
- * ## How to Navigate
- * Use the tabs above to explore the **Classes** (structs like HashEntry)
- * or **Files** to see the documented functions.
+ * ## Como Navegar
+ * Utilize as tabs acima para explorar as **Classes** (structs como HashEntry)
+ * ou **Files** para ver as funções documentadas
  */
 
 /**
@@ -39,21 +39,25 @@ int main(void) {
     // Nomes das pastas de saída
     const char* comp_dir = "silesia_compress";
     const char* rest_dir = "silesia_restored";
+    const char* p_dickens = "silesia/dickens";
 
     // Cria as pastas usando a macro portátil
     MKDIR(comp_dir);
     MKDIR(rest_dir);
+    MKDIR(p_dickens);
 
     // --- Opções de Execução ---
 
     // 1. Comprimir e descomprimir um ficheiro específico
-    //Compress_Decompress_Especifico(comp_dir, rest_dir);
+    // Compress_Decompress_Especifico(comp_dir, rest_dir);
 
     // 2. Comprimir e descomprimir todos os ficheiros do Silesia Corpus
     // Compress_Decompress_ALL(comp_dir, rest_dir);
 
     // 3. Teste Manual com String (útil para o modo Visual Debug)
-     Teste_String_Manual(comp_dir, rest_dir);
+    Teste_String_Manual(comp_dir, rest_dir);
+
+    // testeEntropia(p_dickens);
 
     // 4. Teste de Otimização do Dicionário
     //Teste_Otimizacao_Dicionario(comp_dir);
